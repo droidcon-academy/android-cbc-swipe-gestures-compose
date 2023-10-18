@@ -1,2 +1,2 @@
 # Study materials and source code for **Droidcon Academy** course 
-> # Add Course Name 
+> # Mastering Swipe to Action with Jetpack Compose in Android 
