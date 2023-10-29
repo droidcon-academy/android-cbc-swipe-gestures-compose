@@ -20,9 +20,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxWidth(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-//                    VersionItemComponent(version = Version("qwwer", R.drawable.android_14_preview))
                     VersionsListComponent(versionsList = versionsList)
-//                    DynamicDraggableSample()
                 }
             }
         }

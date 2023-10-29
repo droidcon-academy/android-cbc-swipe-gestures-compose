@@ -1,6 +1,5 @@
 package com.droidcon.androidversions.ui.components
 
-import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.AnchoredDraggableState
 import androidx.compose.foundation.gestures.Orientation
@@ -46,12 +45,10 @@ fun DraggableItem(
             .fillMaxWidth()
             .align(Alignment.CenterStart)
             .offset{
-                Log.d("VEETOO", "Updating offset")
                 IntOffset(
                     x = state.requireOffset().roundToInt(),
                     y = 0
                 )
-
             }
             .anchoredDraggable(state, orientation = Orientation.Horizontal),
             content = content

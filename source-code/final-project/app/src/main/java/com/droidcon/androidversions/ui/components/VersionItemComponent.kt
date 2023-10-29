@@ -62,10 +62,14 @@ fun VersionItemComponent(
             velocityThreshold = velocityThreshHold,
             animationSpec = animationSpec,
             confirmValueChange = { anchor ->
+                /**
+                 * Implement logic to update data source here.
+                 * Deleting row from the db here, for instance
+                 */
                 val isDismiss = anchor == DynamicDragAnchors.HalfBeforeStart ||
                         anchor == DynamicDragAnchors.Half ||
                         anchor == DynamicDragAnchors.End
-                if (isDismiss){
+                if (isDismiss) {
                     show = false
                 }
                 true
