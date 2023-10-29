@@ -37,7 +37,7 @@ fun DynamicDraggableSample(
         velocityThreshold = velocityThreshold
     )) {
         AnchoredDraggableState(
-            initialValue = DynamicDragAnchors.Start,
+            initialValue = DynamicDragAnchors.Half,
             positionalThreshold = positionalThreshold,
             velocityThreshold = velocityThreshold,
             animationSpec = animationSpec
@@ -51,7 +51,7 @@ fun DynamicDraggableSample(
             state.updateAnchors(
                 DraggableAnchors {
                     DynamicDragAnchors.entries.forEach { anchor ->
-                        anchor at dragEndPoint * anchor.fraction
+                        anchor at -(dragEndPoint * anchor.fraction)
                     }
                 }
             )
@@ -62,7 +62,6 @@ fun DynamicDraggableSample(
             resourceId = R.drawable.android_14_preview,
             modifier = Modifier
                 .padding(18.dp)
-
                 .size(contextSize)
                 .offset {
                     IntOffset(
