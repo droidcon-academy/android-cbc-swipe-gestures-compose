@@ -26,6 +26,7 @@ fun VersionCard(
     modifier: Modifier = Modifier,
     version: Version
 ) {
+    // add state and modifier
     Card(
         modifier = modifier,
         colors = CardDefaults.cardColors(
@@ -48,12 +49,6 @@ fun VersionCard(
     }
 }
 
-/**
- * For the dynamic moving make it vertical, horizontal etc. or any direction
- * Would this be confusing, do I maintain it to horizontal
- * If I maintain it to horizontal, I may have to reduce the width of the card..
- * By the time I'm done working on the sample project I'll know
- */
 
 @Composable
 fun VersionImage(

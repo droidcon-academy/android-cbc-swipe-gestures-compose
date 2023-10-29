@@ -1,7 +1,7 @@
 package com.droidcon.androidversions.ui.components
 
 enum class DragAnchors{
-    START, END
+    START,CENTER,  END
 }
 
 enum class DynamicDragAnchors(val fraction: Float){

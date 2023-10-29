@@ -25,7 +25,7 @@ import kotlin.math.roundToInt
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun DynamicDraggableSample(
-    modifier: Modifier
+    modifier: Modifier = Modifier
 ) {
     val density = LocalDensity.current
     val animationSpec = tween<Float>()
