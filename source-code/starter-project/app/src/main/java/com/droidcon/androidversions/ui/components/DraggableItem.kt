@@ -15,14 +15,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import kotlin.math.roundToInt
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun DraggableItem(
-    state: AnchoredDraggableState<DynamicDragAnchors>,
+    state: AnchoredDraggableState<DragAnchors>,
     content: @Composable BoxScope.() -> Unit,
     modifier: Modifier = Modifier,
     startAction: @Composable (BoxScope.() -> Unit)? = {},
@@ -44,13 +42,10 @@ fun DraggableItem(
         Box(modifier = Modifier
             .fillMaxWidth()
             .align(Alignment.CenterStart)
-            .offset{
-                IntOffset(
-                    x = state.requireOffset().roundToInt(),
-                    y = 0
-                )
-            }
-            .anchoredDraggable(state, orientation = Orientation.Horizontal),
+            .offset {  }
+            .anchoredDraggable(state, Orientation.Horizontal),
+            // TODO add offset modifier
+            // TODO: Add AnchoredDraggable modifier
             content = content
         )
     }
