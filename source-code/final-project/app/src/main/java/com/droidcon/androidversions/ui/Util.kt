@@ -26,7 +26,7 @@ val versionsList = listOf(
     ),
     Version(
         name = "Android 14",
-        resourceId =R.drawable.android_14_preview
+        resourceId = R.drawable.android_14_preview
     ),
 
-)
+    )

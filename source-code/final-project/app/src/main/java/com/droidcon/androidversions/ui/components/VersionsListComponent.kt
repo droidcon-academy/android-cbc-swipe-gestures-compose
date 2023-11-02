@@ -19,7 +19,7 @@ fun VersionsListComponent(
         contentPadding = PaddingValues(top = 32.dp),
     ) {
         items(versionsList, key = { it.name }) { version ->
-           VersionItemComponent(version = version)
+            VersionItemComponent(version = version)
         }
     }
 }
