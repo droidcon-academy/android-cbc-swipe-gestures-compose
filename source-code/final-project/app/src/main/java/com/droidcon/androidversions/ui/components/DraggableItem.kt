@@ -22,7 +22,7 @@ import kotlin.math.roundToInt
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun DraggableItem(
-    state: AnchoredDraggableState<DynamicDragAnchors>,
+    state: AnchoredDraggableState<DragAnchors>,
     content: @Composable BoxScope.() -> Unit,
     modifier: Modifier = Modifier,
     startAction: @Composable (BoxScope.() -> Unit)? = {},
@@ -34,23 +34,27 @@ fun DraggableItem(
             .fillMaxWidth()
             .height(100.dp)
             .clip(RectangleShape)
-    ){
+    ) {
         endAction?.let {
             endAction()
         }
         startAction?.let {
             startAction()
         }
-        Box(modifier = Modifier
-            .fillMaxWidth()
-            .align(Alignment.CenterStart)
-            .offset{
-                IntOffset(
-                    x = state.requireOffset().roundToInt(),
-                    y = 0
-                )
-            }
-            .anchoredDraggable(state, orientation = Orientation.Horizontal),
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.CenterStart)
+                .offset {
+                    IntOffset(
+                        x = state
+                            .requireOffset()
+                            .roundToInt(),
+                        y = 0
+                    )
+                }
+                .anchoredDraggable(state, orientation = Orientation.Horizontal),
+
             content = content
         )
     }

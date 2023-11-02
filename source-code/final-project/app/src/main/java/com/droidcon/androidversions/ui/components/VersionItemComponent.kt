@@ -40,35 +40,32 @@ fun VersionItemComponent(
     modifier: Modifier = Modifier,
     version: Version
 ) {
+    val density = LocalDensity.current
     var show by rememberSaveable {
         mutableStateOf(true)
     }
-    val density = LocalDensity.current
     val actionSize = 80.dp
     val actionSizePx = with(density) { actionSize.toPx() }
     val animationSpec = tween<Float>()
     val positionalThreshold = { distance: Float -> distance * 0.5f }
-    val velocityThreshHold = { with(density) { 100.dp.toPx() } }
+    val velocityThreshold = { with(density) { 100.dp.toPx() } }
+
     val state = rememberSaveable(
         saver = AnchoredDraggableState.Saver(
             animationSpec = animationSpec,
             positionalThreshold = positionalThreshold,
-            velocityThreshold = velocityThreshHold
+            velocityThreshold = velocityThreshold
         )
     ) {
         AnchoredDraggableState(
-            initialValue = DynamicDragAnchors.Start,
+            initialValue = DragAnchors.Start,
             positionalThreshold = positionalThreshold,
-            velocityThreshold = velocityThreshHold,
+            velocityThreshold = velocityThreshold,
             animationSpec = animationSpec,
             confirmValueChange = { anchor ->
-                /**
-                 * Implement logic to update data source here.
-                 * Deleting row from the db here, for instance
-                 */
-                val isDismiss = anchor == DynamicDragAnchors.HalfBeforeStart ||
-                        anchor == DynamicDragAnchors.Half ||
-                        anchor == DynamicDragAnchors.End
+                val isDismiss = anchor == DragAnchors.PreHalf ||
+                        anchor == DragAnchors.Half ||
+                        anchor == DragAnchors.End
                 if (isDismiss) {
                     show = false
                 }
@@ -76,15 +73,15 @@ fun VersionItemComponent(
             }
         )
     }
-
     AnimatedVisibility(visible = show, exit = fadeOut(spring())) {
         Box(
             modifier = modifier.onSizeChanged { layoutSize ->
-                val dragEndPoint = layoutSize.width - actionSizePx
+                val dragEndpoint = layoutSize.width - actionSizePx
                 state.updateAnchors(
                     DraggableAnchors {
-                        DynamicDragAnchors.entries.forEach { anchor ->
-                            anchor at (dragEndPoint * anchor.fraction)
+                        DragAnchors.entries.forEach { anchor ->
+                            anchor at (dragEndpoint * anchor.fraction)
+
                         }
                     }
                 )
